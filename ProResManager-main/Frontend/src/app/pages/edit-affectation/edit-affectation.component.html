@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+        </div>
+        <div class="col-xl-3 col-lg-6">
+        </div>
+        <div class="col-xl-3 col-lg-6">
+        </div>
+        <div class="col-xl-3 col-lg-6">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card bg-gradient-default shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="text-uppercase text-light ls-1 mb-1">Modifier Affectation</h6>
+            </div>
+            <div class="col">
+              <ul class="nav nav-pills justify-content-end">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body text-light">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-row">
+
+              <div class="form-group col-md-4 ">
+                <label for="nom">Nom Manager</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.nomManager" id="nommanager" name="nommanager" required>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="nom">Prenom Manager</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.prenomManager" id="prenomManager" name="prenommanager" required>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="nom">Departement</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.departement" id="departement" name="departement" required>
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-2">
+                <label for="nom">Country</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.country" id="country" name="country" required>
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="nom">Region</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.region" id="region" name="region" required>
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-4">
+                <label for="nom">Nom Ressource</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.nomRessource" id="region" name="region" required>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="nom">Prenom Ressource</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.prenomRessource" id="prenomRessource" name="prenomRessource" required>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="region">Projet</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.projet" id="projet" name="projet" required>
+              </div>
+
+            </div>
+
+            <div class="form-row"> 
+
+              <div class="form-group col-md-6">
+                <label for="nature">Nature Affectation</label>
+                <select class="form-control" [(ngModel)]="affectationToEdit.natureAff" id="natureAff" name="natureAff" required>
+                  <option *ngFor="let natureAffectation of natureAffectations" [value]="natureAffectation.nameNaturedaffec">{{ natureAffectation.nameNaturedaffec }}</option>
+                </select>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="statut">Statut Affectation</label>
+                <select class="form-control" [(ngModel)]="affectationToEdit.statutAff" id="statutAff" name="statutAff" required>
+                  <option *ngFor="let statutAffectation of statutAffectations" [value]="statutAffectation.nomstatutdaff">{{ statutAffectation.nomstatutdaff }}</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-group col-md-2">
+                <label for="region">Mois A</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.moisA" id="moisA" name="moisA" required>
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="region">Mois B</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.moisB" id="moisB" name="moisB" required>
+              </div>
+
+              <div class="form-group col-md-2">
+                <label for="region">mois C</label>
+                <input type="text" class="form-control" [(ngModel)]="affectationToEdit.moisC" id="moisC" name="moisC" required>
+              </div>
+
+            </div>
+
+            <button type="submit" class="button-62">Submit</button>
+
+          
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>   
+  <div class="container-fluid mt--7">   
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0 d-flex justify-content-between align-items-center">
+            <h3 class="text-uppercase mb-0">Managers Enregistrés</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                    <td>{{user.userFirstName}}</td>                  
+                    <td>{{user.userLastName}}</td>
+                    <td>{{user.userEmail}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+  

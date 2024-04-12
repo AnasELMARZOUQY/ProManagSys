@@ -1,0 +1,80 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row"></div>
+    </div>
+  </div>
+</div>   
+<div class="container-fluid mt--7">   
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 d-flex justify-content-between align-items-center">
+          <h3 class="text-uppercase mb-0">Table Affectations</h3>
+          <div class="input-group input-group-alternative custom-input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search">
+          </div>
+          <button class="button-28" (click)="exportToCSV()">Export</button>
+          <button class="button-62" *ngIf="isActive()" (click)="navigateToTarget()" >Ajouter</button>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">idAffectation</th>
+                <th scope="col">Manager</th>
+                <th scope="col">departement</th>
+                <th scope="col">country</th>
+                <th scope="col">region</th>
+                <th scope="col">Ressource</th>
+                <th scope="col">projet</th>
+                <th scope="col">naturedaffectations</th>
+                <th scope="col">statuDaffectations</th>
+                <th scope="col">{{activeSession.moisA}}</th>
+                <th scope="col">{{activeSession.moisB}}</th>
+                <th scope="col">{{activeSession.moisC}}</th>
+                <th scope="col">sommeParProjet</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let affectation of affectations | filter: searchText : ['nomManager', 'departement', 'country', 'region', 'nomRessource', 'projet', 'natureAff', 'statutAff']">
+                <td>{{affectation.idAffectation}}</td>
+                <td *ngIf="affectation.nomManager && affectation.prenomManager">
+                  {{ affectation.nomManager + ' ' + affectation.prenomManager }}
+                </td>                  
+                <td>{{affectation.departement}}</td>
+                <td>{{affectation.country}}</td>
+                <td>{{affectation.region}}</td>
+                <td *ngIf="affectation.nomRessource && affectation.prenomRessource">
+                    {{ affectation.nomRessource + ' ' + affectation.prenomRessource }}
+                </td>                  
+                <td>{{affectation.projet}}</td>
+                <td>{{affectation.natureAff}}</td>
+                <td>{{affectation.statutAff}}</td>
+                <td>{{affectation.moisA}}</td>
+                <td>{{affectation.moisB}}</td>
+                <td>{{affectation.moisC}}</td>
+                <td>{{affectation.sommeParProjet}}</td>
+                <td class="text-right">
+                  <div *ngIf="isActive()" ngbDropdown   placement="top-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" (click)="navigateToEdit(affectation.idAffectation)" role="button">Edit</a>
+                      <a class="dropdown-item" (click)="deleteAffectation(affectation.idAffectation)" role="button">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>

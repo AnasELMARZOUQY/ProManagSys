@@ -1,0 +1,83 @@
+<div class="header bg-gradient-danger py-6 py-lg-7">
+  <div class="container">
+    <div class="header-body text-center mb-5">
+      <div class="row justify-content-center">
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-3">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-5">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          
+          <form (ngSubmit)="onSubmit()" role="form">
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Nom" type="text" [(ngModel)]="newUser.userLastName" id="userLastName" name="userLastName" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Prenom" type="text" [(ngModel)]="newUser.userFirstName" id="userFirstName" name="userFirstName" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Username" type="text" [(ngModel)]="newUser.userName" id="userName" name="userName" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" type="email" [(ngModel)]="newUser.userEmail" id="userEmail" name="userEmail" required>
+              </div>
+            </div>           
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" placeholder="Mot de passe" type="password" [(ngModel)]="newUser.userPassword" id="userPassword" name="userPassword" required>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit"  class="btn btn-primary mt-4">Créer Mon Compte</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row mt-3 d-flex justify-content-between">
+        
+          <p class="text text-light"><small>Vous avez un compte?</small></p>
+          <a (click)="navigateToLogIn()" class="text-success font-weight-400">Se Connecter</a>
+      </div>
+
+    </div>
+  </div>
+</div>

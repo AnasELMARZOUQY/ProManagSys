@@ -1,0 +1,59 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 d-flex align-items-center" >
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="text-uppercase  ls-1 mb-1">Mon Compte</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a class="button-62"  (click)="navigateToEdit(userName)" role="button">Modifer</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">Détails Utilisateur</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label text-dark" for="username">Username</label>
+                    <p type="text" id="userName" class="form-control form-control-alternatives">{{ userName }} </p>
+                    
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label text-dark" for="email">Adresse Email</label>
+                    <p type="email" id="userEmail" class="form-control form-control-alternatives">{{ userEmail }} </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label text-dark" for="last-name">Nom</label>
+                    <p type="text" id="userLastName" class="form-control form-control-alternatives">{{ userLastName }} </p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label text-dark" for="last-name">Prenom</label>
+                    <p type="text" id="userFirstName" class="form-control form-control-alternatives">{{ userFirstName }} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

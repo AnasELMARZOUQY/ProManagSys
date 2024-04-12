@@ -1,0 +1,62 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 d-flex align-items-center" >
+    <span class="mask bg-gradient-danger opacity-8"></span>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-10 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0 ">
+                <div class="row border-0 d-flex justify-content-between align-items-center ">
+                    <div class="col mb-4">
+                    <h3 class="text-uppercase  ls-1 mb-1">Modifier session</h3>
+                    </div>
+                <div class="col">
+                </div>
+                <div class="form-container">
+                    <div class="form-left">
+                        <form id="form1">
+                            <div class="pl-lg-4">
+                            <div class="row">
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label class="form-control-label text-dark" for="dateDebutSession">Date Début</label>
+                            <input type="date" id="dateDebutSession" name="dateDebutSession" class="form-control form-control-alternatives" [(ngModel)]="sessionToEdit.dateDebutSession" required>
+                            </div>
+                            <div class="form-group">
+                            <label class="form-control-label text-dark" for="dateFinSession">Date Fin</label>
+                            <input type="date" id="dateFinSession" name="dateFinSession" class="form-control form-control-alternatives" [(ngModel)]="sessionToEdit.dateFinSession"  required>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-right">
+                        <form id="form2">
+                            <label class="form-control-label text-dark" for="input-username">Mois Concernés</label>
+                            <div class="my-form">
+                                <input type="text" id="moisA" class="form-control form-control-alternatives" name="moisA" [(ngModel)]="sessionToEdit.moisA"  required>
+                                <input type="text" id="moisB" class="form-control form-control-alternatives" name="moisB" [(ngModel)]="sessionToEdit.moisB"  required>
+                                <input type="text" id="moisC" class="form-control form-control-alternatives" name="moisC" [(ngModel)]="sessionToEdit.moisC"  required>
+                            </div>
+                        </form>
+                    </div>
+                        <div class="form-right-right">
+                                <form id="form3">
+                                <label class="form-control-label text-dark" for="input-username">Jours de Travail par Mois</label>
+                                <div class="my-form">
+                                    <input type="text" id="joursTravailMoisA" name="joursTravailMoisA" class="form-control form-control-alternatives" [(ngModel)]="sessionToEdit.joursTravailMoisA"  required>
+                                    <input type="text" id="joursTravailMoisb" name="joursTravailMoisb" class="form-control form-control-alternatives" [(ngModel)]="sessionToEdit.joursTravailMoisb"  required>
+                                    <input type="text" id="joursTravailMoisC" name="joursTravailMoisC" class="form-control form-control-alternatives" [(ngModel)]="sessionToEdit.joursTravailMoisC"  required>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-end mt-4">
+                    <button type="submit" class="button-62" (click)="onSubmit()" >Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  

@@ -1,0 +1,112 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 d-flex align-items-center" >
+    <span class="mask bg-gradient-danger opacity-8"></span>
+</div>
+
+
+<div class="container-fluid mt--7 mb-4">
+    <div class="row">
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row border-0 d-flex justify-content-between align-items-center">
+                <div class="col">
+                  <h3 class="text-uppercase  ls-1 mb-1">Session Actuelle</h3>
+                </div>
+              </div>
+            </div>
+          <div class="form-container mt-1 mb-0">
+            <div class="form-left">
+              <form>
+                  <div class="pl-lg-4">
+                      <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label text-dark" for="dateDebutSession">Date Début</label>
+                                  <p type="date" id="dateDebutSession" class="form-control form-control-alternatives">{{ activeSession.dateDebutSession }}</p>
+                              </div>
+                              <div class="form-group">
+                                  <label class="form-control-label text-dark" for="dateFinSession">Date Fin</label>
+                                  <p type="date" id="dateFinSession" class="form-control form-control-alternatives">{{ activeSession.dateFinSession }}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+            </div>
+            <div class="form-right">
+              <form >
+                <label class="form-control-label text-dark" for="jourstravail">Jours de Travail par Mois</label>
+                <div class="my-form">
+                  <p type="text" id="moisA" class="form-control form-control-alternatives">{{ activeSession.moisA }} : {{ activeSession.joursTravailMoisA }} Jours</p>
+                  <p type="text" id="moisB" class="form-control form-control-alternatives">{{ activeSession.moisB }} : {{ activeSession.joursTravailMoisb }} Jours</p>
+                  <p type="text" id="moisC" class="form-control form-control-alternatives">{{ activeSession.moisC }} : {{ activeSession.joursTravailMoisC }} Jours</p>
+              </div>
+              </form>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-start mt-1 mb-3">
+            <button class="button-62" *ngIf="isAdmin()" (click)="navigateToEdit(activeSession.idsession)" >Modifer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="container-fluid mt--16">
+  <div class="row">
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row border-0 d-flex justify-content-between align-items-center">
+              <div class="col">
+                <h3 class="text-uppercase  ls-1 mb-1">Autres Sessions</h3>
+              </div>
+              <button class="button-62" *ngIf="isAdmin()" (click)="navigateToTarget()" >Ajouter</button>
+            </div>
+          </div>
+  
+        <div class="form-container mt-1 mb-0">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Date Debut</th>
+                  <th scope="col">Date Fin</th>
+                  <th scope="col">Mois Concernés</th>
+                  <th scope="col">Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let session of sessions ">
+                  <td>{{session.dateDebutSession | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{session.dateFinSession | date: 'dd/MM/yyyy'}}</td>
+                  <td>
+                    <div class="sub-columns">
+                      <div class="sub-column">{{session.moisA}} : {{session.joursTravailMoisA}}</div>
+                      <div class="sub-column">{{session.moisB}} : {{session.joursTravailMoisb}}</div>
+                      <div class="sub-column1">{{session.moisC}} : {{session.joursTravailMoisC}}</div>
+                    </div>
+                  </td>
+                  <td [ngStyle]="getStyleForType(session.typeSession)">{{session.typeSession}}</td>
+                  <td class="text-right">
+                    <div *ngIf="isAdmin()" ngbDropdown   placement="top-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" (click)="navigateToEdit(session.idsession)" role="button">Edit</a>
+                        <a class="dropdown-item" (click)="deleteSession(session.idsession)" role="button">Delete</a>
+                      </div>
+                    </div>
+                  </td>                  
+                </tr>
+              </tbody>
+            </table>
+          </div> 
+        
+      </div>
+    </div>
+  </div>
+</div>

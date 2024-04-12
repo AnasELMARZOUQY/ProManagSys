@@ -1,0 +1,62 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 d-flex align-items-center" >
+    <span class="mask bg-gradient-danger opacity-8"></span>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-10 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0 ">
+                    <div class="row border-0 d-flex justify-content-between align-items-center ">
+                        <div class="col mb-4">
+                            <h3 class="text-uppercase  ls-1 mb-1">Nouvelle Session</h3>
+                        </div>
+                    <div class="col">
+                </div>
+                <div class="form-container">
+                    <div class="form-left">
+                        <form  class="ml-2">
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label text-dark" for="dateDebutSession">Date Début</label>
+                                            <input type="date" id="dateDebutSession" class="form-control form-control-alternatives" [(ngModel)]="newSession.dateDebutSession" placeholder="Date Début" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label text-dark" for="dateFinSession">Date Fin</label>
+                                            <input type="date" id="dateFinSession" class="form-control form-control-alternatives" [(ngModel)]="newSession.dateFinSession" placeholder="Date Fin" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-right">
+                        <form >
+                            <label class="form-control-label text-dark" for="input-username">Mois Concernés</label>
+                            <div class="my-form">
+                                <input type="text" id="moisA" class="form-control form-control-alternatives" [(ngModel)]="newSession.moisA" placeholder="1er Mois" required>
+                                <input type="text" id="moisb" class="form-control form-control-alternatives" [(ngModel)]="newSession.moisB" placeholder="2eme Mois" required>
+                                <input type="text" id="moisC" class="form-control form-control-alternatives" [(ngModel)]="newSession.moisC" placeholder="3eme Mois" required>
+                            </div>
+                        </form>
+                    </div>
+                        <div class="form-right-right">
+                                <form >
+                                <label class="form-control-label text-dark" for="input-username">Jours de Travail par Mois</label>
+                                <div class="my-form">
+                                    <input type="text" id="joursTravailMoisA" class="form-control form-control-alternatives" [(ngModel)]="newSession.joursTravailMoisA" placeholder="Jours Travail 1er Mois" required>
+                                    <input type="text" id="joursTravailMoisB" class="form-control form-control-alternatives" [(ngModel)]="newSession.joursTravailMoisb" placeholder="Jours Travail 2eme Mois" required>
+                                    <input type="text" id="joursTravailMoisC" class="form-control form-control-alternatives" [(ngModel)]="newSession.joursTravailMoisC" placeholder="Jours Travail 3eme Mois" required>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-end mt-4">
+                    <button type="submit" class="button-62" (click)="onSubmit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
