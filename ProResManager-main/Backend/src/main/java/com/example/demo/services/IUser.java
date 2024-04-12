@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entites.User;
-import com.example.demo.entites.projet;
+import com.example.demo.entites.Project;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

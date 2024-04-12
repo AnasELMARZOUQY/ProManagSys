@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 import com.example.demo.dao.UserdDao;
 import com.example.demo.entites.ApiResponse;
-import com.example.demo.entites.Ressources;
+// import com.example.demo.entites.Ressources;
 import com.example.demo.entites.User;
 import com.example.demo.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class UserControllers {
 
 
     @PostMapping({"/registerNewUser"})
-    public ResponseEntity<Ressources> registrerNewUser(@RequestBody User user) {
+    public ResponseEntity<User> registrerNewUser(@RequestBody User user) {
         Integer test = userService.registrerNewUser(user);
         ApiResponse response = new ApiResponse();
         if(test == 1){

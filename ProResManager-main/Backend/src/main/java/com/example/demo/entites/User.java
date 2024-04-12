@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,21 +45,31 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     @ToString.Exclude
-    private List<projet> project;
+    private List<Project> userproject;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Project> managerproject;
 
     // liaison one to many avec les ressources
     //@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true , mappedBy = "user")
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    @ToString.Exclude
-    private List<Ressources> resources;
+    // @OneToMany(mappedBy = "user")
+    // @JsonIgnore
+    // @ToString.Exclude
+    // private List<Ressources> resources;
 
     // liaison avec Session One To Many
     // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true , mappedBy = "user")
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    @ToString.Exclude
-    private List<Session> sessions;
+    // @OneToMany(mappedBy = "user")
+    // @JsonIgnore
+    // @ToString.Exclude
+    // private List<Session> sessions;
 
-
+        // liaison avec feedback one to many
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        private List<Feedback> feedbacks;
+        // liaison avec affectation one to many
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        private List<Affectation> affectations;
 }

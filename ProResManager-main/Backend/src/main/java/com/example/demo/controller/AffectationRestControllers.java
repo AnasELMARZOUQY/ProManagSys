@@ -36,41 +36,41 @@ public class AffectationRestControllers {
     }
 
 
-    @PostMapping("/addaffectation/{idUser}")
-    public ResponseEntity<String> addAffectation(@RequestBody Affectation Affectation,
-                                                 @PathVariable("idUser") String idUser) {
-        List<String> affectation = affectationControl.addAffectation(Affectation,idUser);
-        ApiResponse response = new ApiResponse();
+    // @PostMapping("/addaffectation/{idUser}")
+    // public ResponseEntity<String> addAffectation(@RequestBody Affectation Affectation,
+    //                                              @PathVariable("idUser") String idUser) {
+    //     List<String> affectation = affectationControl.addAffectation(Affectation,idUser);
+    //     ApiResponse response = new ApiResponse();
 
-        if(affectation == null){
-            response.setMessage("une affectation avec le meme projet et meme ressource existe déjà");
-            return new ResponseEntity(response, HttpStatus.CONFLICT);
+    //     if(affectation == null){
+    //         response.setMessage("une affectation avec le meme projet et meme ressource existe déjà");
+    //         return new ResponseEntity(response, HttpStatus.CONFLICT);
 
-        }
-        else if(affectation.isEmpty()){
-            response.setMessage("affectation ajouté avec succès !");
-            return new ResponseEntity(response, HttpStatus.OK);
+    //     }
+    //     else if(affectation.isEmpty()){
+    //         response.setMessage("affectation ajouté avec succès !");
+    //         return new ResponseEntity(response, HttpStatus.OK);
 
-        }
-        else{
-            response.setMessage("vous avez depassé les nombre de jours de travail de ces mois" + affectation);
-            return new ResponseEntity(response, HttpStatus.CONFLICT);
+    //     }
+    //     else{
+    //         response.setMessage("vous avez depassé les nombre de jours de travail de ces mois" + affectation);
+    //         return new ResponseEntity(response, HttpStatus.CONFLICT);
 
-        }
-    }
-
-
+    //     }
+    // }
 
 
 
-    @PutMapping("/update/{idAffectation}")
-    public ResponseEntity<String> updateAffectation(@RequestBody Affectation affectation,
-                                  @PathVariable("idAffectation") Long idAffectation){
-        affectationControl.updateAffectation(affectation, idAffectation);
-        ApiResponse response = new ApiResponse();
-        response.setMessage("Project updated successfully !");
-        return new ResponseEntity(response, HttpStatus.OK);
-    }
+
+
+    // @PutMapping("/update/{idAffectation}")
+    // public ResponseEntity<String> updateAffectation(@RequestBody Affectation affectation,
+    //                               @PathVariable("idAffectation") Long idAffectation){
+    //     affectationControl.updateAffectation(affectation, idAffectation);
+    //     ApiResponse response = new ApiResponse();
+    //     response.setMessage("Project updated successfully !");
+    //     return new ResponseEntity(response, HttpStatus.OK);
+    // }
 
 
 

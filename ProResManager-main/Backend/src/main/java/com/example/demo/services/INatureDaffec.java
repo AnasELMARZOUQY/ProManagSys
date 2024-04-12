@@ -1,13 +1,13 @@
-package com.example.demo.services;
+// package com.example.demo.services;
 
-import com.example.demo.entites.Naturedaffectation;
-import org.springframework.stereotype.Component;
+// import com.example.demo.entites.Naturedaffectation;
+// import org.springframework.stereotype.Component;
 
-import java.util.List;
+// import java.util.List;
 
-@Component
-public interface INatureDaffec {
-    Naturedaffectation addNatureDaff(Naturedaffectation naturedaff);
+// @Component
+// public interface INatureDaffec {
+//     Naturedaffectation addNatureDaff(Naturedaffectation naturedaff);
 
-    List<Naturedaffectation> GetAllNatureDaff();
-}
+//     List<Naturedaffectation> GetAllNatureDaff();
+// }

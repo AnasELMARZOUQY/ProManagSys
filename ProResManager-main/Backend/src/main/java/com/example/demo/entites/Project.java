@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,13 +15,21 @@ import java.lang.reflect.Field;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class projet implements Serializable {
+public class Project implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idprojet;
     private String nomprojet;
-    private String region;
-    private String country;
+    //createdat, deletedat, projectManager (reference user)
+    private String description;
+    private Date createdAt;
+    private Date deletedAt;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
+    @JoinColumn(name = "idManager")
+    private User projectManager;
+    // private String region;
+    // private String country;
 
     public Object get(String attributeName) {
         try {
@@ -39,12 +49,17 @@ public class projet implements Serializable {
     @JsonIgnore
     @JoinColumn(name = "idUser")
     private User user;
-
-    // liaison avec Session
-    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    // one to many with affectation
+    @OneToMany(mappedBy = "project")
     @JsonIgnore
-    @JoinColumn(name = "idsession")
-    private Session session;
+    @ToString.Exclude
+    private List<Affectation> affectation;
+
+    // // liaison avec Session
+    // @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    // @JsonIgnore
+    // @JoinColumn(name = "idsession")
+    // private Session session;
 
 
 }

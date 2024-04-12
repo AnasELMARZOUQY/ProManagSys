@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.entites.ApiResponse;
-import com.example.demo.entites.projet;
-import com.example.demo.services.impl.ProjetServices;
+import com.example.demo.entites.Project;
+import com.example.demo.services.impl.ProjectServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +18,18 @@ import java.util.Optional;
 @RequestMapping("/projet")
 public class ProjetRestControllers {
     @Autowired
-    ProjetServices  projetControl;
+    ProjectServices  projetControl;
 
 
     @GetMapping("/GetallProject")
     @PreAuthorize("isAuthenticated()")
-    List<projet> GetAllprojet() {
+    List<Project> GetAllprojet() {
              return projetControl.GetAllprojet();
     }
 
    @GetMapping("/GetProjet/{idProjet}")
-   public ResponseEntity<projet> getProjetById(@PathVariable("idProjet") Long idProjet) {
-        Optional<projet> optionalProjet = projetControl.getProjetWithID(idProjet);
+   public ResponseEntity<Project> getProjetById(@PathVariable("idProjet") Long idProjet) {
+        Optional<Project> optionalProjet = projetControl.getProjetWithID(idProjet);
         ApiResponse response = new ApiResponse();
         if (optionalProjet.isPresent())
             return ResponseEntity.ok(optionalProjet.get());
@@ -40,9 +40,9 @@ public class ProjetRestControllers {
    }
 
    @PostMapping("/addprojet/{idUser}")
-   public ResponseEntity<String> addProjetwithIdUser(@RequestBody projet p ,
+   public ResponseEntity<String> addProjetwithIdUser(@RequestBody Project p ,
                                                           @PathVariable("idUser") String idUser) {
-        projet projets = projetControl.addProjetwithIdUser(p, idUser);
+                                                            Project projets = projetControl.addProjetwithIdUser(p, idUser);
         ApiResponse response = new ApiResponse();
         if (projets != null) {
             response.setMessage("Projet ajouté avec succès !");
@@ -56,7 +56,7 @@ public class ProjetRestControllers {
 
     //host:8082/updateProjet/1
     @PutMapping("/updates/{idprojet}")
-    public ResponseEntity<String> updateProjet(@RequestBody projet p,
+    public ResponseEntity<String> updateProjet(@RequestBody Project p,
                              @PathVariable("idprojet") Long idprojet) {
         projetControl.updateProjet(p,idprojet);
         ApiResponse response = new ApiResponse();

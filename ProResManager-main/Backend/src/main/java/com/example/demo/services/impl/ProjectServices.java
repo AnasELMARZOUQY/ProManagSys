@@ -14,7 +14,7 @@ import java.util.*;
 
 @Service
 @Slf4j
-public class ProjetServices implements IProjet {
+public class ProjectServices implements IProjet {
     @Autowired
     projetRepo projetRepository;
 
@@ -23,12 +23,12 @@ public class ProjetServices implements IProjet {
 
 
     @Override
-    public List<projet> GetAllprojet() {
+    public List<Project> GetAllprojet() {
         return projetRepository.findAll();
     }
 
     @Override
-    public Optional<projet> getProjetWithID(Long id){
+    public Optional<Project> getProjetWithID(Long id){
         return projetRepository.findById(id);
     }
 
@@ -43,9 +43,9 @@ public class ProjetServices implements IProjet {
     }
 
     @Override
-    public projet updateProjet(projet p,Long projectId) {
-        projet existingProjet = projetRepository.findById(projectId).orElse(null);
-        List<String> attributes = getProjetAttributes(projet.class);
+    public Project updateProjet(Project p,Long projectId) {
+        Project existingProjet = projetRepository.findById(projectId).orElse(null);
+        List<String> attributes = getProjetAttributes(Project.class);
         Set<String> ignoreProperties = new HashSet<>();
         for (String attribute : attributes) {
             if (p.get(attribute) == null)
@@ -83,16 +83,14 @@ public class ProjetServices implements IProjet {
 
 
     @Override
-    public projet addProjetwithIdUser(projet p, String idUser ) {
+    public Project addProjetwithIdUser(Project p, String idUser ) {
         User user = userRepository.findById(idUser).orElse(null);
         p.setUser(user);
-        projet projetExistant = projetRepository.findByNomprojet(p.getNomprojet());
+        Project projetExistant = projetRepository.findByNomprojet(p.getNomprojet());
         if (projetExistant == null) {
-            projet nouveauProjet = new projet();
+            Project nouveauProjet = new Project();
             nouveauProjet.setNomprojet(p.getNomprojet());
             nouveauProjet.setUser(user);
-            nouveauProjet.setRegion(p.getRegion());
-            nouveauProjet.setCountry(p.getCountry());
             return projetRepository.save(nouveauProjet);
         } else {
             return null;

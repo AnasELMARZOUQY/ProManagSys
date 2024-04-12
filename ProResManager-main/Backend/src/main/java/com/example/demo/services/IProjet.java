@@ -1,5 +1,5 @@
 package com.example.demo.services;
-import com.example.demo.entites.projet;
+import com.example.demo.entites.Project;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -7,14 +7,14 @@ import java.util.Optional;
 
 @Component
 public interface IProjet {
-    projet updateProjet(projet p,Long projectId);
+    Project updateProjet(Project p,Long projectId);
 
-    Optional<projet> getProjetWithID(Long id);
-    List<projet> GetAllprojet();
+    Optional<Project> getProjetWithID(Long id);
+    List<Project> GetAllprojet();
 
     Integer removeProjet(Long idprojet,  String idUser);
 
-    projet addProjetwithIdUser(projet p, String idUser);
+    Project addProjetwithIdUser(Project p, String idUser);
 
 
 
