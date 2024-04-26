@@ -1,9 +1,9 @@
 package com.example.demo.services.impl;
 
-import com.example.demo.entites.*;
+import com.example.demo.entities.*;
+import com.example.demo.repository.ProjectRepo;
 import com.example.demo.repository.UserRepo;
-import com.example.demo.repository.projetRepo;
-import com.example.demo.services.IProjet;
+import com.example.demo.services.IProject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +14,28 @@ import java.util.*;
 
 @Service
 @Slf4j
-public class ProjectServices implements IProjet {
+public class ProjectServices implements IProject {
     @Autowired
-    projetRepo projetRepository;
+    ProjectRepo projetRepository;
 
     @Autowired
     UserRepo userRepository;
 
 
     @Override
-    public List<Project> GetAllprojet() {
+    public List<Project> getAllProject() {
         return projetRepository.findAll();
     }
 
     @Override
-    public Optional<Project> getProjetWithID(Long id){
+    public Optional<Project> getProjectWithID(Long id){
         return projetRepository.findById(id);
     }
 
 
-    public static List<String> getProjetAttributes(Class<?> projetClass) {
+    public static List<String> getProjectAttributes(Class<?> ProjectClass) {
         List<String> attributeNames = new ArrayList<>();
-        Field[] fields = projetClass.getDeclaredFields();
+        Field[] fields = ProjectClass.getDeclaredFields();
         for (Field field : fields) {
             attributeNames.add(field.getName());
         }
@@ -43,9 +43,9 @@ public class ProjectServices implements IProjet {
     }
 
     @Override
-    public Project updateProjet(Project p,Long projectId) {
+    public Project updateProject(Project p,Long projectId) {
         Project existingProjet = projetRepository.findById(projectId).orElse(null);
-        List<String> attributes = getProjetAttributes(Project.class);
+        List<String> attributes = getProjectAttributes(Project.class);
         Set<String> ignoreProperties = new HashSet<>();
         for (String attribute : attributes) {
             if (p.get(attribute) == null)
@@ -68,7 +68,7 @@ public class ProjectServices implements IProjet {
     }*/
 
     @Override
-    public Integer removeProjet(Long idprojet, String idUser){
+    public Integer removeProject(Long idprojet, Long idUser){
         User currentUser = userRepository.findById(idUser).orElse(null);
         if (currentUser != null && currentUser.getRole() != null) {
             String roleName = currentUser.getRole().getRoleName();
@@ -80,21 +80,24 @@ public class ProjectServices implements IProjet {
         return 0;
     }
 
+    @Override
+    public Project createProject(String projectName, String description, Date deadline) {
+        Project project = new Project();
+        project.setProjectName(projectName);
+        project.setDescription(description);
+        project.setCreatedAt(new Date());
+        project.setStatus(ProjectStatus.NOT_STARTED);
+        project.setDeadline(deadline);
 
+        // Set any other properties of the project as needed
+        return projetRepository.save(project);
+    }
 
     @Override
-    public Project addProjetwithIdUser(Project p, String idUser ) {
-        User user = userRepository.findById(idUser).orElse(null);
-        p.setUser(user);
-        Project projetExistant = projetRepository.findByNomprojet(p.getNomprojet());
-        if (projetExistant == null) {
-            Project nouveauProjet = new Project();
-            nouveauProjet.setNomprojet(p.getNomprojet());
-            nouveauProjet.setUser(user);
-            return projetRepository.save(nouveauProjet);
-        } else {
-            return null;
-        }
+    public Project updateStatus(ProjectStatus status, Long projectId) {
+        Project project = projetRepository.findById(projectId).orElse(null);
+        project.setStatus(status);
+        return projetRepository.save(project);
     }
 
 }

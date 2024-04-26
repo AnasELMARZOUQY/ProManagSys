@@ -1,8 +1,9 @@
 package com.example.demo.services;
 
-import com.example.demo.entites.User;
-import com.example.demo.entites.Project;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.entities.Project;
+import com.example.demo.entities.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,10 +11,10 @@ import java.util.Optional;
 @Component
 public interface IUser {
     List<User> getAllUsers();
-    Optional<User> getUserWithID(String id);
+    Optional<User> getUserWithID(Long id);
     void initRolesAndUser();
-    Integer deleteUser(String idUser);
+    Integer deleteUser(Long idUser);
 
-    Integer updateUser(String idUser, User user);
+    Integer updateUser(Long idUser, User user);
 
 }

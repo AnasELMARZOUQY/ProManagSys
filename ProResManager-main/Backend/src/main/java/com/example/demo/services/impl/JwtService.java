@@ -1,10 +1,9 @@
 package com.example.demo.services.impl;
 
-
-import com.example.demo.dao.UserdDao;
-import com.example.demo.entites.JwtRequest;
-import com.example.demo.entites.JwtResponse;
-import com.example.demo.entites.User;
+import com.example.demo.entities.JwtRequest;
+import com.example.demo.entities.JwtResponse;
+import com.example.demo.entities.User;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ import java.util.Set;
 public class JwtService implements UserDetailsService {
 
     @Autowired
-    private UserdDao userdDao;
+    private UserRepo userdDao;
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired
@@ -38,12 +37,14 @@ public class JwtService implements UserDetailsService {
         authenticate(userName ,userPassword);
         final UserDetails userDetails = loadUserByUsername(userName);
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
-        User user = userdDao.findById(userName).get();
+        Long userid = userdDao.findByUserName(userName).getUserId();
+        User user = userdDao.findById(userid).get();
         return  new JwtResponse(user , newGeneratedToken);
     }
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userdDao.findById(userName).get();
+        Long userid = userdDao.findByUserName(userName).getUserId();
+        User user = userdDao.findById(userid).get();
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(
                     user.getUserName(),

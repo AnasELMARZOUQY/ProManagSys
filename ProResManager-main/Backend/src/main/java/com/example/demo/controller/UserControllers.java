@@ -1,8 +1,6 @@
 package com.example.demo.controller;
-import com.example.demo.dao.UserdDao;
-import com.example.demo.entites.ApiResponse;
-// import com.example.demo.entites.Ressources;
-import com.example.demo.entites.User;
+import com.example.demo.entities.ApiResponse;
+import com.example.demo.entities.User;
 import com.example.demo.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +27,7 @@ public class UserControllers {
     }
 
     @GetMapping("/getUser/{idUser}")
-    public ResponseEntity<User> getUserById(@PathVariable("idUser") String idUser) {
+    public ResponseEntity<User> getUserById(@PathVariable("idUser") Long idUser) {
         Optional<User> user = userService.getUserWithID(idUser);
         ApiResponse response = new ApiResponse();
         if (user.isPresent())
@@ -76,7 +74,7 @@ public class UserControllers {
 
     @PutMapping({"/update/{idUser}"})
     public ResponseEntity<String> updateUser(@RequestBody User user,
-                                             @PathVariable("idUser") String idUser){
+                                             @PathVariable("idUser") Long idUser){
         userService.updateUser(idUser, user);
         ApiResponse response = new ApiResponse();
         response.setMessage("User updated successfully !");
@@ -85,7 +83,7 @@ public class UserControllers {
 
     @DeleteMapping({"/removeUser/{idUser}"})
     @PreAuthorize("hasRole('Admin')")
-    public ResponseEntity<String> removeUser(@PathVariable("idUser") String idUser){
+    public ResponseEntity<String> removeUser(@PathVariable("idUser") Long idUser){
         Integer test = userService.deleteUser(idUser);
         ApiResponse response = new ApiResponse();
         response.setMessage("User deleted !");

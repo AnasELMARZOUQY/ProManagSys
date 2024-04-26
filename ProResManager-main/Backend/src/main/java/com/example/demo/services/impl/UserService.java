@@ -2,9 +2,9 @@ package com.example.demo.services.impl;
 
 
 import com.example.demo.dao.RoleDao;
-import com.example.demo.dao.UserdDao;
-import com.example.demo.entites.Role;
-import com.example.demo.entites.User;
+import com.example.demo.entities.Role;
+import com.example.demo.entities.User;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.services.IUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -20,12 +20,12 @@ import java.util.*;
 public class UserService implements IUser {
 
     @Autowired
-    private UserdDao userDao;
+    private UserRepo userDao;
     @Autowired
     private RoleDao roleDao;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    // @Autowired
+    // private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -33,7 +33,7 @@ public class UserService implements IUser {
     }
 
     @Override
-    public Optional<User> getUserWithID(String id){
+    public Optional<User> getUserWithID(Long id){
         return userDao.findById(id);
     }
     public Integer registrerNewUser(User user) {
@@ -72,7 +72,8 @@ public class UserService implements IUser {
     }
 
     public String getEncodedPassword(String password) {
-        return passwordEncoder.encode(password);
+        // return passwordEncoder.encode(password);
+        return null;
     }
 
 
@@ -85,7 +86,7 @@ public class UserService implements IUser {
         return attributeNames;
     }
 
-    public Integer updateUser(String idUser, User user){
+    public Integer updateUser(Long idUser, User user){
         User existingUser = userDao.findById(idUser).get();
         if(existingUser != null){
             List<String> attributes = getUserAttributes(User.class);
@@ -109,7 +110,7 @@ public class UserService implements IUser {
     }
 
     @Override
-    public Integer deleteUser(String idUser) {
+    public Integer deleteUser(Long idUser) {
         userDao.deleteById(idUser);
         return 1;
     }

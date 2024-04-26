@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.entites.Affectation;
-import com.example.demo.entites.ApiResponse;
+import com.example.demo.entities.Affectation;
+import com.example.demo.entities.ApiResponse;
+import com.example.demo.entities.Project;
+import com.example.demo.entities.Task;
+import com.example.demo.entities.User;
 import com.example.demo.services.impl.AffectationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,22 +20,57 @@ public class AffectationRestControllers {
     @Autowired
     AffectationServices affectationControl;
 
-    @GetMapping("/getallaffectations")  //check
-    public List<Affectation> getAllaffectations() {
-        return affectationControl.getAllAffectations();
+    @GetMapping("/all")  //check
+    public ResponseEntity<List<Affectation>> getAllAffectations() {
+        return ResponseEntity.ok(affectationControl.getAllAffectations());
     }
 
+    @GetMapping("/{idAffectation}")
+    public ResponseEntity<Optional<Affectation>> getAffectationWithId(@PathVariable("idAffectation") Long idAffectation) {
+        // Optional<Affectation> optionalAffectation = affectationControl.getAffectationWithID(idAffectation);
+        // ApiResponse response = new ApiResponse();
+        // if (optionalAffectation.isPresent())
+        //     return ResponseEntity.ok(optionalAffectation.get());
+        // else {
+        //     response.setMessage("affectation not found");
+        //     return new ResponseEntity(response, HttpStatus.CONFLICT);
+        // }
+        return ResponseEntity.ok(affectationControl.getAffectationWithID(idAffectation));
+    }
 
-    @GetMapping("/GetAffectation/{idAffectation}")
-    public ResponseEntity<Affectation> getAffectationById(@PathVariable("idAffectation") Long idAffectation) {
-        Optional<Affectation> optionalAffectation = affectationControl.getAffectationWithID(idAffectation);
-        ApiResponse response = new ApiResponse();
-        if (optionalAffectation.isPresent())
-            return ResponseEntity.ok(optionalAffectation.get());
-        else {
-            response.setMessage("affectation not found");
-            return new ResponseEntity(response, HttpStatus.CONFLICT);
-        }
+    @DeleteMapping("{idAffectation}")
+    public ResponseEntity<Void> deleteAffectation(@PathVariable("idAffectation") Long idAffectation) {
+        // affectationControl.deleteAffectation(idAffectation);
+        // ApiResponse response = new ApiResponse();
+        // response.setMessage("Project deleted !");
+        // return new ResponseEntity(response, HttpStatus.OK);
+        affectationControl.deleteAffectation(idAffectation);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Affectation>> getAffectationsByUserId(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(affectationControl.getAffectationsByUserId(userId));
+    }
+
+    @GetMapping("/task/{taskId}")
+    public ResponseEntity<List<Affectation>> getAffectationsByTaskId(@PathVariable("taskId") Long taskId) {
+        return ResponseEntity.ok(affectationControl.getAffectationsByTaskId(taskId));
+    }
+
+    @GetMapping("/project/{projectId}")
+    public ResponseEntity<List<Affectation>> getAffectationsByProjectId(@PathVariable("projectId") Long projectId) {
+        return ResponseEntity.ok(affectationControl.getAffectationsByProjectId(projectId));
+    }
+
+    @PostMapping("/assign/task")
+    public ResponseEntity<Affectation> assignTasktoUser(@RequestBody Task task, @RequestBody User user) {
+        return ResponseEntity.ok(affectationControl.assignTasktoUser(task, user));
+    }
+
+    @PostMapping("/assign/project")
+    public ResponseEntity<Affectation> assignProjecttoUser(@RequestBody Project project, @RequestBody User user) {
+        return ResponseEntity.ok(affectationControl.assignProjecttoUser(project, user));
     }
 
 
@@ -75,12 +113,5 @@ public class AffectationRestControllers {
 
 
 
-    @DeleteMapping("/deleteaffectation/{idAffectation}")
-    public ResponseEntity<String> deleteAffectation(@PathVariable("idAffectation") Long idAffectation) {
-        affectationControl.deleteAffectation(idAffectation);
-        ApiResponse response = new ApiResponse();
-        response.setMessage("Project deleted !");
-        return new ResponseEntity(response, HttpStatus.OK);
-
-    }
+  
 }
